@@ -180,6 +180,8 @@ var drawSplash = function(){
     textSize(61);
     text("Jumper", 109,29);
     textFont(createFont("normal"));
+    textSize(20);
+    text("By:Kevin & Isaac", 10,361);
     startButton.draw();
     drawMe (216, 122, 65);
     drawBitmoji(45,108,71);
