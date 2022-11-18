@@ -1,1 +1,112 @@
+var drawBitmoji = function (x,y,h){
+var drawSweater = function (bitmojiX,bitmojiY,h)
+{
+    var p=h/100;
+    fill (139, 201, 245);
+    quad(bitmojiX+70*p, bitmojiY+115*p, bitmojiX+130*p, bitmojiY+115*p, bitmojiX+158*p, bitmojiY+165*p, bitmojiX+42*p, bitmojiY+165*p);
+    rect(bitmojiX+105*p, bitmojiY+73*p, 3*p, 60*p);
+    rect(bitmojiX+92*p, bitmojiY+73*p, 3*p, 60*p);
+    ellipse(bitmojiX+100*p, bitmojiY+78*p, 75*p, 90*p);
+    ellipse(bitmojiX+107*p, bitmojiY+133*p, 4*p, 4*p);
+    ellipse(bitmojiX+94*p, bitmojiY+133*p, 4*p, 4*p);
+    line(bitmojiX+62*p, bitmojiY+165*p, bitmojiX+69*p, bitmojiY+127*p);
+    line(bitmojiX+139*p, bitmojiY+165*p, bitmojiX+129*p, bitmojiY+127*p);//sweater
+};
+var drawHead = function (bitmojiX,bitmojiY,h)
+{
+    var p=h/100;
+    fill (255, 192, 76);
+    ellipse(bitmojiX+100*p, bitmojiY+80*p, 67*p, 80*p); //head
+};
+var drawHair = function (bitmojiX,bitmojiY,h)
+{
+    var p=h/100;
+    fill(0, 0, 0);
+    quad(bitmojiX+127*p, bitmojiY+56*p, bitmojiX+130*p, bitmojiY+65*p, bitmojiX+124*p, bitmojiY+65*p, bitmojiX+120*p, bitmojiY+49*p);
+    quad(bitmojiX+80*p, bitmojiY+49*p, bitmojiX+75*p, bitmojiY+65*p, bitmojiX+69*p, bitmojiY+65*p, bitmojiX+78*p, bitmojiY+49*p);
+    arc(bitmojiX+120*p, bitmojiY+58*p, 13*p, -19*p, 11, 181);
+    arc(bitmojiX+100*p, bitmojiY+58*p, 50*p, -35*p, 15, 166);
+    arc(bitmojiX+80*p, bitmojiY+59*p, 13*p, -19*p, -3, 169); //hair
+};
+var drawGlasses = function (bitmojiX, bitmojiY, h)
+{
+    var p=h/100;
+    fill (255, 192, 76);
+    rect(bitmojiX+105*p, bitmojiY+69*p, 25*p, 15*p);
+    rect(bitmojiX+70*p, bitmojiY+69*p, 25*p, 15*p);
+    line(bitmojiX+67*p, bitmojiY+75*p, bitmojiX+70*p, bitmojiY+76*p);
+    line(bitmojiX+130*p, bitmojiY+75*p, bitmojiX+133*p, bitmojiY+76*p);
+    line(bitmojiX+105*p, bitmojiY+76*p, bitmojiX+96*p, bitmojiY+76*p); //glasses
+};
+var drawRightEye = function (bitmojiX,bitmojiY,h)
+{
+    var p=h/100;
+    fill(209, 139, 0);
+    arc(bitmojiX+116*p, bitmojiY+76*p, 16*p, 6*p, 1, 180);
+    fill(255, 255, 255);
+    ellipse(bitmojiX+116*p,bitmojiY+76*p, 12*p, 5*p);
+    fill(0, 0, 0);
+    ellipse(bitmojiX+116*p,bitmojiY+76*p, 4*p, -4*p);
+    fill (255, 192, 76);
+    arc(bitmojiX+116*p, bitmojiY+75*p, 17*p, -4*p, 1, 180); //right eye
+};
+var drawLeftEye = function (bitmojiX,bitmojiY,h)
+{
+    var p=h/100;
+    fill(209, 139, 0);
+    arc(bitmojiX+84*p, bitmojiY+76*p, 15*p, 6*p, 1, 180);
+    fill(255, 255, 255);
+    ellipse(bitmojiX+84*p,bitmojiY+76*p, 12*p, 5*p);
+    fill(0, 0, 0);
+    ellipse(bitmojiX+84*p,bitmojiY+76*p, 4*p, -4*p);
+    fill (255, 192, 76);
+    arc(bitmojiX+84*p, bitmojiY+75*p, 17*p, -4*p, 1, 180);//left eyes
+};
+var drawNose = function (bitmojiX, bitmojiY, h)
+{
+    var p=h/100;
+    fill (255, 192, 76);
+    arc(bitmojiX+96*p, bitmojiY+90*p, 3*p, -4*p, 1, 180);
+    arc(bitmojiX+104*p, bitmojiY+90*p, 3*p, -4*p, 1, 180); //nose
+};
+var drawMouth = function (bitmojiX, bitmojiY, h)
+{
+    var p=h/100;
+    fill(0, 0, 0);
+    arc(bitmojiX+100*p, bitmojiY+97*p, 24*p, -9*p, 1, 180); //mustache
+    fill(209, 139, 0);
+    arc(bitmojiX+100*p, bitmojiY+97*p, 22*p, -9*p, 1, 180); //top lip
+    fill(0, 0, 0);
+    arc(bitmojiX+100*p, bitmojiY+98*p, 9*p, 9*p, 1, 180); //bottom lip hair
+    fill(255, 169, 10);
+    arc(bitmojiX+100*p, bitmojiY+98*p, 19*p, 6*p, 1, 180);
+    line(bitmojiX+89*p, bitmojiY+97*p, bitmojiX+111*p, bitmojiY+97*p); // bottom lip
+};
+var drawChinHair = function (bitmojiX, bitmojiY, h)
+{
+    var p=h/100;
+    fill(0, 0, 0);
+    arc(bitmojiX+100*p, bitmojiY+117*p, 17*p, 10*p, 1, 180); //chin hair
+};
+var drawShirtDesign = function (bitmojiX, bitmojiY, h)
+{
+    var p=h/100;
+    fill(0, 0, 0);
+    textSize(30*p);
+    textFont(createFont("normal"));
+    text("KP", bitmojiX+82*p, bitmojiY+160*p); //Shirt Design
+};
 
+    drawSweater(x,y,h);
+    drawHead(x,y,h);
+    drawHair(x,y,h);
+    drawGlasses(x,y,h);
+    drawRightEye(x,y,h);
+    drawLeftEye(x,y,h);
+    drawNose(x,y,h);
+    drawMouth(x,y,h);
+    drawChinHair(x,y,h);
+    drawShirtDesign(x,y,h);
+};
+
+drawBitmoji(0,0,187);
