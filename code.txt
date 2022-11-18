@@ -16,4 +16,198 @@ var drawMe = function(x,y,h){
     arc(x+153*p, y+128*p, 172*p, -28*p, 208, 247); // smile
     triangle(x+87*p, y+109*p, x+100*p, y+101*p, x+105*p, y+112*p); // nose
 };
-drawMe (200, 250, 50); 
+var drawBitmoji = function (x,y,h){
+var drawSweater = function (bitmojiX,bitmojiY,h)
+{
+    var p=h/100;
+    fill (139, 201, 245);
+    quad(bitmojiX+70*p, bitmojiY+115*p, bitmojiX+130*p, bitmojiY+115*p, bitmojiX+158*p, bitmojiY+165*p, bitmojiX+42*p, bitmojiY+165*p);
+    rect(bitmojiX+105*p, bitmojiY+73*p, 3*p, 60*p);
+    rect(bitmojiX+92*p, bitmojiY+73*p, 3*p, 60*p);
+    ellipse(bitmojiX+100*p, bitmojiY+78*p, 75*p, 90*p);
+    ellipse(bitmojiX+107*p, bitmojiY+133*p, 4*p, 4*p);
+    ellipse(bitmojiX+94*p, bitmojiY+133*p, 4*p, 4*p);
+    line(bitmojiX+62*p, bitmojiY+165*p, bitmojiX+69*p, bitmojiY+127*p);
+    line(bitmojiX+139*p, bitmojiY+165*p, bitmojiX+129*p, bitmojiY+127*p);//sweater
+};
+var drawHead = function (bitmojiX,bitmojiY,h)
+{
+    var p=h/100;
+    fill (255, 192, 76);
+    ellipse(bitmojiX+100*p, bitmojiY+80*p, 67*p, 80*p); //head
+};
+var drawHair = function (bitmojiX,bitmojiY,h)
+{
+    var p=h/100;
+    fill(0, 0, 0);
+    quad(bitmojiX+127*p, bitmojiY+56*p, bitmojiX+130*p, bitmojiY+65*p, bitmojiX+124*p, bitmojiY+65*p, bitmojiX+120*p, bitmojiY+49*p);
+    quad(bitmojiX+80*p, bitmojiY+49*p, bitmojiX+75*p, bitmojiY+65*p, bitmojiX+69*p, bitmojiY+65*p, bitmojiX+78*p, bitmojiY+49*p);
+    arc(bitmojiX+120*p, bitmojiY+58*p, 13*p, -19*p, 11, 181);
+    arc(bitmojiX+100*p, bitmojiY+58*p, 50*p, -35*p, 15, 166);
+    arc(bitmojiX+80*p, bitmojiY+59*p, 13*p, -19*p, -3, 169); //hair
+};
+var drawGlasses = function (bitmojiX, bitmojiY, h)
+{
+    var p=h/100;
+    fill (255, 192, 76);
+    rect(bitmojiX+105*p, bitmojiY+69*p, 25*p, 15*p);
+    rect(bitmojiX+70*p, bitmojiY+69*p, 25*p, 15*p);
+    line(bitmojiX+67*p, bitmojiY+75*p, bitmojiX+70*p, bitmojiY+76*p);
+    line(bitmojiX+130*p, bitmojiY+75*p, bitmojiX+133*p, bitmojiY+76*p);
+    line(bitmojiX+105*p, bitmojiY+76*p, bitmojiX+96*p, bitmojiY+76*p); //glasses
+};
+var drawRightEye = function (bitmojiX,bitmojiY,h)
+{
+    var p=h/100;
+    fill(209, 139, 0);
+    arc(bitmojiX+116*p, bitmojiY+76*p, 16*p, 6*p, 1, 180);
+    fill(255, 255, 255);
+    ellipse(bitmojiX+116*p,bitmojiY+76*p, 12*p, 5*p);
+    fill(0, 0, 0);
+    ellipse(bitmojiX+116*p,bitmojiY+76*p, 4*p, -4*p);
+    fill (255, 192, 76);
+    arc(bitmojiX+116*p, bitmojiY+75*p, 17*p, -4*p, 1, 180); //right eye
+};
+var drawLeftEye = function (bitmojiX,bitmojiY,h)
+{
+    var p=h/100;
+    fill(209, 139, 0);
+    arc(bitmojiX+84*p, bitmojiY+76*p, 15*p, 6*p, 1, 180);
+    fill(255, 255, 255);
+    ellipse(bitmojiX+84*p,bitmojiY+76*p, 12*p, 5*p);
+    fill(0, 0, 0);
+    ellipse(bitmojiX+84*p,bitmojiY+76*p, 4*p, -4*p);
+    fill (255, 192, 76);
+    arc(bitmojiX+84*p, bitmojiY+75*p, 17*p, -4*p, 1, 180);//left eyes
+};
+var drawNose = function (bitmojiX, bitmojiY, h)
+{
+    var p=h/100;
+    fill (255, 192, 76);
+    arc(bitmojiX+96*p, bitmojiY+90*p, 3*p, -4*p, 1, 180);
+    arc(bitmojiX+104*p, bitmojiY+90*p, 3*p, -4*p, 1, 180); //nose
+};
+var drawMouth = function (bitmojiX, bitmojiY, h)
+{
+    var p=h/100;
+    fill(0, 0, 0);
+    arc(bitmojiX+100*p, bitmojiY+97*p, 24*p, -9*p, 1, 180); //mustache
+    fill(209, 139, 0);
+    arc(bitmojiX+100*p, bitmojiY+97*p, 22*p, -9*p, 1, 180); //top lip
+    fill(0, 0, 0);
+    arc(bitmojiX+100*p, bitmojiY+98*p, 9*p, 9*p, 1, 180); //bottom lip hair
+    fill(255, 169, 10);
+    arc(bitmojiX+100*p, bitmojiY+98*p, 19*p, 6*p, 1, 180);
+    line(bitmojiX+89*p, bitmojiY+97*p, bitmojiX+111*p, bitmojiY+97*p); // bottom lip
+};
+var drawChinHair = function (bitmojiX, bitmojiY, h)
+{
+    var p=h/100;
+    fill(0, 0, 0);
+    arc(bitmojiX+100*p, bitmojiY+117*p, 17*p, 10*p, 1, 180); //chin hair
+};
+var drawShirtDesign = function (bitmojiX, bitmojiY, h)
+{
+    var p=h/100;
+    fill(0, 0, 0);
+    textSize(30*p);
+    textFont(createFont("normal"));
+    text("KP", bitmojiX+82*p, bitmojiY+128*p); //Shirt Design
+};
+
+    drawSweater(x,y,h);
+    drawHead(x,y,h);
+    drawHair(x,y,h);
+    drawGlasses(x,y,h);
+    drawRightEye(x,y,h);
+    drawLeftEye(x,y,h);
+    drawNose(x,y,h);
+    drawMouth(x,y,h);
+    drawChinHair(x,y,h);
+    drawShirtDesign(x,y,h);
+};
+
+var currentScene = 0;
+
+var drawButton = function(config){
+    this.x= config.x ||0;
+    this.y= config.y ||0;
+    this.width = config.width ||91;
+    this.height= config.height ||50; 
+    this.label = config.label ||"Click";
+    this.onClick = config.onClick ||function(){};
+ this.color= config.color || color(232, 61, 35);
+};//configuration 
+
+drawButton.prototype.draw = function() {
+    fill(this.color);
+    rect(this.x, this.y, this.width, this.height, 0);
+    fill(0, 0, 0);
+    textSize(19);
+    textAlign(LEFT, TOP);
+    text(this.label, this.x+13, this.y+this.height/4);
+}; //display the button
+
+drawButton.prototype.isMouseInside = function(){
+    return mouseX > this.x &&
+           mouseX < (this.x + this.width) &&
+           mouseY > this.y &&
+           mouseY < (this.y + this.height);
+}; //when mouse is on button
+
+drawButton.prototype.handleMouseClick = function() {
+    if (this.isMouseInside()) {
+        this.onClick();
+    }
+}; //when button is clicked
+
+var startButton = new drawButton ({
+    x: 153,
+    y: 287,
+    label: "START",
+    color: color(65, 235, 201),
+    onClick: function (){
+        currentScene=1;
+    }
+    });
+
+
+var drawSplash = function(){
+    currentScene=0;
+    background(110, 214, 240);
+    fill(0, 0, 0);
+    textFont(createFont("impact"));
+    textSize(61);
+    text("Jumper", 109,29);
+    textFont(createFont("normal"));
+    startButton.draw();
+    drawMe (216, 122, 65);
+    drawBitmoji(45,108,71);
+};
+
+var drawGame = function(){
+    currentScene=1;
+    background(255, 0, 0);
+};
+
+
+mouseClicked = function(){
+    if(currentScene===0){
+        startButton.handleMouseClick();
+    }
+    
+    else if(currentScene===1){
+        
+    }
+};
+
+draw = function() {
+    if (currentScene===0){
+        drawSplash();
+    }
+    
+    else if(currentScene===1){
+        drawGame();
+    }
+};
+
