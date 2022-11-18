@@ -1,1 +1,19 @@
+var drawMe = function(x,y,h){
+    var p = h/100;
+    rectMode(LEFT);
+    fill(250, 214, 147);
+    ellipse(x+100*p, y+100*p, 100*p, 119*p); // head
+    fill(0, 255, 238);
+    ellipse(x+121*p, y+79*p, 9*p, 7*p);// eye l
+    ellipse(x+83*p, y+79*p, 9*p, 7*p); // eye r
 
+    fill(212, 203, 74);
+    arc(x+102*p, y+66*p, 73*p, 45*p, -175, 4); //hair
+    fill(227, 98, 227);
+    arc(x+102*p, y+55*p, 88*p, 58*p, -184, -1); // hat cap
+    rect(x+57*p, y+51*p, 118*p, 10*p); // hat brim
+    noFill();
+    arc(x+153*p, y+128*p, 172*p, -28*p, 208, 247); // smile
+    triangle(x+87*p, y+109*p, x+100*p, y+101*p, x+105*p, y+112*p); // nose
+};
+drawMe (200, 250, 50); 
