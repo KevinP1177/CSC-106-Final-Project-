@@ -1,3 +1,21 @@
+var drawMe = function(x,y,h){
+    var p = h/100;
+    rectMode(LEFT);
+    fill(250, 214, 147);
+    ellipse(x+100*p, y+100*p, 100*p, 119*p); // head
+    fill(0, 255, 238);
+    ellipse(x+121*p, y+79*p, 9*p, 7*p);// eye l
+    ellipse(x+83*p, y+79*p, 9*p, 7*p); // eye r
+
+    fill(212, 203, 74);
+    arc(x+102*p, y+66*p, 73*p, 45*p, -175, 4); //hair
+    fill(227, 98, 227);
+    arc(x+102*p, y+55*p, 88*p, 58*p, -184, -1); // hat cap
+    rect(x+57*p, y+51*p, 118*p, 10*p); // hat brim
+    noFill();
+    arc(x+153*p, y+128*p, 172*p, -28*p, 208, 247); // smile
+    triangle(x+87*p, y+109*p, x+100*p, y+101*p, x+105*p, y+112*p); // nose
+};
 var drawBitmoji = function (x,y,h){
 var drawSweater = function (bitmojiX,bitmojiY,h)
 {
@@ -94,7 +112,7 @@ var drawShirtDesign = function (bitmojiX, bitmojiY, h)
     fill(0, 0, 0);
     textSize(30*p);
     textFont(createFont("normal"));
-    text("KP", bitmojiX+82*p, bitmojiY+160*p); //Shirt Design
+    text("KP", bitmojiX+82*p, bitmojiY+128*p); //Shirt Design
 };
 
     drawSweater(x,y,h);
@@ -109,4 +127,151 @@ var drawShirtDesign = function (bitmojiX, bitmojiY, h)
     drawShirtDesign(x,y,h);
 };
 
-drawBitmoji(0,0,187);
+/* Global Variables / constants */
+var currentScene = 1;
+var desicion=0;
+
+var Bitmoji = function(x, y) {
+    this.x = x ||100;
+    this.y = y ||100;
+};
+
+Bitmoji.prototype.draw = function(playerModel) {
+    this.y = constrain(this.y, 0, height-83);
+    playerModel(this.x,this.y,40);
+};
+
+var drawButton = function(config){
+    this.x= config.x ||0;
+    this.y= config.y ||0;
+    this.width = config.width ||91;
+    this.height= config.height ||50; 
+    this.label = config.label ||"Click";
+    this.onClick = config.onClick ||function(){};
+ this.color= config.color || color(232, 61, 35);
+};//configuration 
+
+drawButton.prototype.draw = function() {
+    fill(this.color);
+    rect(this.x, this.y, this.width, this.height, 0);
+    fill(0, 0, 0);
+    textSize(19);
+    textAlign(LEFT, TOP);
+    text(this.label, this.x+13, this.y+this.height/4);
+}; //display the button
+
+drawButton.prototype.isMouseInside = function(){
+    return mouseX > this.x &&
+           mouseX < (this.x + this.width) &&
+           mouseY > this.y &&
+           mouseY < (this.y + this.height);
+}; //when mouse is on button
+
+drawButton.prototype.handleMouseClick = function() {
+    if (this.isMouseInside()) {
+        this.onClick();
+    }
+}; //when button is clicked
+
+var bitmoji = new Bitmoji(157, 141); //make a new bitmoji object
+
+var startButton = new drawButton ({
+    x: 153,
+    y: 287,
+    label: "START",
+    color: color(65, 235, 201),
+    onClick: function (){
+        currentScene=1;
+        
+    }
+    }); //button for character select
+    
+var selectChar1 = new drawButton ({
+    x: 33,
+    y: 118,
+    width: 150,
+    height: 150,
+    label: " ",
+    color: color(65, 235, 201),
+    onClick: function (){
+        currentScene=2;
+        desicion=1;
+        
+    }
+    }); //chose Kevin Bitmoji
+    
+var selectChar2 = new drawButton ({
+    x: 217,
+    y: 118,
+    width: 150,
+    height: 150,
+    label: " ",
+    color: color(65, 235, 201),
+    onClick: function (){
+        currentScene=2;
+        desicion=2;
+    }
+    }); //chose Isaac Bitmoji
+
+var drawSplash = function(){
+    currentScene=0;
+    background(110, 214, 240);
+    fill(0, 0, 0);
+    textFont(createFont("impact"));
+    textSize(61);
+    text("Jumper", 109,29);
+    textFont(createFont("normal"));
+    textSize(20);
+    text("By:Kevin & Isaac", 10,361);
+    startButton.draw();
+    drawMe (216, 122, 65);
+    drawBitmoji (45,108,71);
+}; //scene for splash screen
+
+var playerSelect = function(){
+    currentScene=1;
+    background(255, 0, 0);
+    fill(0, 0, 0);
+    textSize(25);
+    text("Select Your Character",82,38);
+    selectChar1.draw();
+    selectChar2.draw();
+    drawMe(184,101,100);
+    drawBitmoji(7,94,100);
+    
+}; //scene for player select
+
+var drawGame = function(playerModel){
+    currentScene=2;
+    if(desicion===1){
+        fill(255, 0, 0);
+        rect(200,200,100,100);
+    }
+    background(255, 255, 255);
+}; //scene for the game
+
+mouseClicked = function(){
+    if(currentScene===0){
+        startButton.handleMouseClick();
+    }
+    
+    else if(currentScene===1){
+        selectChar1.handleMouseClick();
+        selectChar2.handleMouseClick();
+    }
+}; //function for pressing the buttons
+
+draw = function() {
+    if (currentScene===0){
+        drawSplash();
+    }
+    
+    else if(currentScene===1){
+        playerSelect();
+    }
+    
+    else if(currentScene===2){
+        drawGame(drawBitmoji);
+    }
+}; //draw out the functions
+
