@@ -1,4 +1,3 @@
-
 var drawBitmoji = function (x,y,h){
 var drawSweater = function (bitmojiX,bitmojiY,h)
 {
@@ -135,6 +134,15 @@ var gravity=0.15;
 frameRate(60);
 var keyDown=[6];
 var gameScore=0;
+var xPos = [];
+var yPos = [];
+var numStars = 85;
+var starSpeed = [1]; 
+for (var i = 0; i < numStars; i++) {
+    xPos.push(random(0, 400));
+    yPos.push(random(0, 400));
+    starSpeed.push(random(1));
+}
 
 //main character
 var Bitmoji = function(environment){
@@ -395,6 +403,22 @@ gameLevel.setup();
 //create a player inside that level
 var player= new Bitmoji(gameLevel);
 
+var drawBackgroundStars = function() {
+    background(38, 2, 122); //stars
+    noStroke();
+    for (var i = 0; i < yPos.length; i++) {
+        fill(250, 250, 250);
+        ellipse(xPos[i], yPos[i], random(1,10), random(1,10));
+        fill(163, 130, 240);
+        yPos[i] += starSpeed[i];
+        
+        if(yPos[i] > 400) {
+        yPos[i] = 0;
+        }
+     
+    }
+};
+
 var drawSplash = function(){
     currentScene=0;
     background(110, 214, 240);
@@ -423,6 +447,12 @@ var playerSelect = function(){
     
 }; //scene for player select
 
+var keyPressed=function(){
+    keyDown[keyCode]=true;
+};
+var keyReleased=function(){
+    keyDown[keyCode]=false;
+};
 var drawGame = function(playerModel){
     currentScene=2;
     
@@ -434,7 +464,7 @@ var drawGame = function(playerModel){
         playerModel=drawMe;
     }
     
-    background(255, 255, 255);
+    drawBackgroundStars();
     
     //run the level stuffs, graphics offset by player height
     pushMatrix();
@@ -479,11 +509,4 @@ var draw= function() {
     else if(currentScene===2){
         drawGame();
     }
-};
-
-var keyPressed=function(){
-    keyDown[keyCode]=true;
-};
-var keyReleased=function(){
-    keyDown[keyCode]=false;
 };
