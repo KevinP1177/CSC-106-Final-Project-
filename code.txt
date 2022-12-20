@@ -213,3 +213,491 @@ draw = function() {
     }
 };
 
+var drawBitmoji = function (x,y,h){
+var drawSweater = function (bitmojiX,bitmojiY,h)
+{
+    var p=h/100;
+    fill (139, 201, 245);
+    quad(bitmojiX+70*p, bitmojiY+115*p, bitmojiX+130*p, bitmojiY+115*p, bitmojiX+158*p, bitmojiY+165*p, bitmojiX+42*p, bitmojiY+165*p);
+    rect(bitmojiX+105*p, bitmojiY+73*p, 3*p, 60*p);
+    rect(bitmojiX+92*p, bitmojiY+73*p, 3*p, 60*p);
+    ellipse(bitmojiX+100*p, bitmojiY+78*p, 75*p, 90*p);
+    ellipse(bitmojiX+107*p, bitmojiY+133*p, 4*p, 4*p);
+    ellipse(bitmojiX+94*p, bitmojiY+133*p, 4*p, 4*p);
+    line(bitmojiX+62*p, bitmojiY+165*p, bitmojiX+69*p, bitmojiY+127*p);
+    line(bitmojiX+139*p, bitmojiY+165*p, bitmojiX+129*p, bitmojiY+127*p);//sweater
+};
+var drawHead = function (bitmojiX,bitmojiY,h)
+{
+    var p=h/100;
+    fill (255, 192, 76);
+    ellipse(bitmojiX+100*p, bitmojiY+80*p, 67*p, 80*p); //head
+};
+var drawHair = function (bitmojiX,bitmojiY,h)
+{
+    var p=h/100;
+    fill(0, 0, 0);
+    quad(bitmojiX+127*p, bitmojiY+56*p, bitmojiX+130*p, bitmojiY+65*p, bitmojiX+124*p, bitmojiY+65*p, bitmojiX+120*p, bitmojiY+49*p);
+    quad(bitmojiX+80*p, bitmojiY+49*p, bitmojiX+75*p, bitmojiY+65*p, bitmojiX+69*p, bitmojiY+65*p, bitmojiX+78*p, bitmojiY+49*p);
+    arc(bitmojiX+120*p, bitmojiY+58*p, 13*p, -19*p, 11, 181);
+    arc(bitmojiX+100*p, bitmojiY+58*p, 50*p, -35*p, 15, 166);
+    arc(bitmojiX+80*p, bitmojiY+59*p, 13*p, -19*p, -3, 169); //hair
+};
+var drawGlasses = function (bitmojiX, bitmojiY, h)
+{
+    var p=h/100;
+    fill (255, 192, 76);
+    rect(bitmojiX+105*p, bitmojiY+69*p, 25*p, 15*p);
+    rect(bitmojiX+70*p, bitmojiY+69*p, 25*p, 15*p);
+    line(bitmojiX+67*p, bitmojiY+75*p, bitmojiX+70*p, bitmojiY+76*p);
+    line(bitmojiX+130*p, bitmojiY+75*p, bitmojiX+133*p, bitmojiY+76*p);
+    line(bitmojiX+105*p, bitmojiY+76*p, bitmojiX+96*p, bitmojiY+76*p); //glasses
+};
+var drawRightEye = function (bitmojiX,bitmojiY,h)
+{
+    var p=h/100;
+    fill(209, 139, 0);
+    arc(bitmojiX+116*p, bitmojiY+76*p, 16*p, 6*p, 1, 180);
+    fill(255, 255, 255);
+    ellipse(bitmojiX+116*p,bitmojiY+76*p, 12*p, 5*p);
+    fill(0, 0, 0);
+    ellipse(bitmojiX+116*p,bitmojiY+76*p, 4*p, -4*p);
+    fill (255, 192, 76);
+    arc(bitmojiX+116*p, bitmojiY+75*p, 17*p, -4*p, 1, 180); //right eye
+};
+var drawLeftEye = function (bitmojiX,bitmojiY,h)
+{
+    var p=h/100;
+    fill(209, 139, 0);
+    arc(bitmojiX+84*p, bitmojiY+76*p, 15*p, 6*p, 1, 180);
+    fill(255, 255, 255);
+    ellipse(bitmojiX+84*p,bitmojiY+76*p, 12*p, 5*p);
+    fill(0, 0, 0);
+    ellipse(bitmojiX+84*p,bitmojiY+76*p, 4*p, -4*p);
+    fill (255, 192, 76);
+    arc(bitmojiX+84*p, bitmojiY+75*p, 17*p, -4*p, 1, 180);//left eyes
+};
+var drawNose = function (bitmojiX, bitmojiY, h)
+{
+    var p=h/100;
+    fill (255, 192, 76);
+    arc(bitmojiX+96*p, bitmojiY+90*p, 3*p, -4*p, 1, 180);
+    arc(bitmojiX+104*p, bitmojiY+90*p, 3*p, -4*p, 1, 180); //nose
+};
+var drawMouth = function (bitmojiX, bitmojiY, h)
+{
+    var p=h/100;
+    fill(0, 0, 0);
+    arc(bitmojiX+100*p, bitmojiY+97*p, 24*p, -9*p, 1, 180); //mustache
+    fill(209, 139, 0);
+    arc(bitmojiX+100*p, bitmojiY+97*p, 22*p, -9*p, 1, 180); //top lip
+    fill(0, 0, 0);
+    arc(bitmojiX+100*p, bitmojiY+98*p, 9*p, 9*p, 1, 180); //bottom lip hair
+    fill(255, 169, 10);
+    arc(bitmojiX+100*p, bitmojiY+98*p, 19*p, 6*p, 1, 180);
+    line(bitmojiX+89*p, bitmojiY+97*p, bitmojiX+111*p, bitmojiY+97*p); // bottom lip
+};
+var drawChinHair = function (bitmojiX, bitmojiY, h)
+{
+    var p=h/100;
+    fill(0, 0, 0);
+    arc(bitmojiX+100*p, bitmojiY+117*p, 17*p, 10*p, 1, 180); //chin hair
+};
+var drawShirtDesign = function (bitmojiX, bitmojiY, h)
+{
+    var p=h/100;
+    fill(0, 0, 0);
+    textSize(30*p);
+    textFont(createFont("normal"));
+    text("KP", bitmojiX+82*p, bitmojiY+128*p); //Shirt Design
+};
+
+    drawSweater(x,y,h);
+    drawHead(x,y,h);
+    drawHair(x,y,h);
+    drawGlasses(x,y,h);
+    drawRightEye(x,y,h);
+    drawLeftEye(x,y,h);
+    drawNose(x,y,h);
+    drawMouth(x,y,h);
+    drawChinHair(x,y,h);
+    drawShirtDesign(x,y,h);
+};
+var drawMe = function(x,y,h){
+    var p = h/100;
+    rectMode(LEFT);
+    fill(250, 214, 147);
+    ellipse(x+100*p, y+100*p, 100*p, 119*p); // head
+    fill(0, 255, 238);
+    ellipse(x+121*p, y+79*p, 9*p, 7*p);// eye l
+    ellipse(x+83*p, y+79*p, 9*p, 7*p); // eye r
+
+    fill(212, 203, 74);
+    arc(x+102*p, y+66*p, 73*p, 45*p, -175, 4); //hair
+    fill(227, 98, 227);
+    arc(x+102*p, y+55*p, 88*p, 58*p, -184, -1); // hat cap
+    rect(x+57*p, y+51*p, 118*p, 10*p); // hat brim
+    noFill();
+    arc(x+153*p, y+128*p, 172*p, -28*p, 208, 247); // smile
+    triangle(x+87*p, y+109*p, x+100*p, y+101*p, x+105*p, y+112*p); // nose
+};
+
+var currentScene = 0;
+var desicion=0;
+var terminal_velocity=4;
+var gravity=0.15;
+frameRate(60);
+var keyDown=[6];
+var gameScore=0;
+
+//main character
+var Bitmoji = function(environment){
+    this.x=200;
+    this.y=200;
+    this.width=30; // you can change this
+    this.height=40; // and/or this
+    this.x_veloc=0;
+    this.y_veloc=8;
+    this.env=environment;
+    this.boostLeft=0; //how much left
+    this.defLeft=0; 
+};
+
+var drawButton = function(config){
+    this.x= config.x ||0;
+    this.y= config.y ||0;
+    this.width = config.width ||91;
+    this.height= config.height ||50; 
+    this.label = config.label ||"Click";
+    this.onClick = config.onClick ||function(){};
+ this.color= config.color || color(232, 61, 35);
+};//configuration 
+
+drawButton.prototype.draw = function() {
+    fill(this.color);
+    rect(this.x, this.y, this.width, this.height, 0);
+    fill(0, 0, 0);
+    textSize(19);
+    textAlign(LEFT, TOP);
+    text(this.label, this.x+13, this.y+this.height/4);
+}; //display the button
+
+drawButton.prototype.isMouseInside = function(){
+    return mouseX > this.x &&
+           mouseX < (this.x + this.width) &&
+           mouseY > this.y &&
+           mouseY < (this.y + this.height);
+}; //when mouse is on button
+
+drawButton.prototype.handleMouseClick = function() {
+    if (this.isMouseInside()) {
+        this.onClick();
+    }
+}; //when button is clicked
+
+var startButton = new drawButton ({
+    x: 153,
+    y: 287,
+    label: "START",
+    color: color(65, 235, 201),
+    onClick: function (){
+        currentScene=1;
+        
+    }
+    }); //button for character select
+    
+var selectChar1 = new drawButton ({
+    x: 33,
+    y: 118,
+    width: 150,
+    height: 150,
+    label: " ",
+    color: color(65, 235, 201),
+    onClick: function (){
+        currentScene=2;
+        desicion=1;
+        
+    }
+    }); //chose Kevin Bitmoji
+    
+var selectChar2 = new drawButton ({
+    x: 217,
+    y: 118,
+    width: 150,
+    height: 150,
+    label: " ",
+    color: color(65, 235, 201),
+    onClick: function (){
+        currentScene=2;
+        desicion=2;
+    }
+    }); //chose Isaac Bitmoji
+
+//draw stuff
+Bitmoji.prototype.display=function(playerModel){
+    drawBitmoji(this.x-20,this.y-25,this.height);
+	
+};
+
+Bitmoji.prototype.move=function(){
+	this.x+=this.x_veloc;
+	this.y-=this.y_veloc;
+	//teleport to other side if goes to far
+	if(this.x>400){
+		this.x=-20;
+	}
+	if(this.x<-30){
+		this.x=400;
+	}
+};
+
+Bitmoji.prototype.collide=function(){
+	//check for platforms
+	for(var i=0;i<this.env.data.length;i++){
+		if(this.x<this.env.data[i][0]+this.env.barwidth&&this.x+this.width>this.env.data[i][0]&&this.y+this.height>this.env.data[i][1]&&this.y+this.height<this.env.data[i][1]+7&&this.y_veloc<0&&!this.dazed){
+			if(this.env.data[i][2]){
+				//bounce
+				this.y_veloc=8;
+				this.env.data[i][3]++;
+				this.brace=15;
+			}
+		}
+	}
+
+	//fall
+	if(this.y_veloc>-terminal_velocity){
+		this.y_veloc-=gravity;
+	}
+	//decelerate sideways
+	if(this.x_veloc!==0){
+		this.x_veloc=floor((abs(this.x_veloc)-abs(this.x_veloc)/8)*10)/10*(this.x_veloc/abs(this.x_veloc));
+	}
+
+	//spawn bars as you get higher
+	if(this.y<150-this.env.getOffset()&&this.y_veloc>0){
+		this.env.addOffset(this.y_veloc);
+		if(round(random(0, this.y-this.env.data[this.env.data.length-1][1]/120))===0){
+			this.env.addBar();
+		} if(this.y<this.env.data[this.env.data.length-2][1]){
+			this.env.addBar();
+		}else if(round(random(0,40))===20){
+			this.env.addBar();
+		}
+	}
+};
+
+Bitmoji.prototype.control=function(){
+	if(keyDown[RIGHT]){
+		if(this.x_veloc<5){
+			this.x_veloc+=1.5;
+		}
+	}
+	if(keyDown[LEFT]){
+		if(this.x_veloc>-5){
+			this.x_veloc-=1.5;
+		}
+	}
+	
+};
+
+//brain function(like draw() kind of)
+Bitmoji.prototype.run=function(){
+	this.collide();
+	this.move();
+	this.control();
+	this.display();
+};
+
+var Level = function(){
+    this.data=[[]]; //holds platform data
+    this.barwidth=40;
+    this.offset=0;
+};
+    
+//set up some bars for the beginning
+Level.prototype.setup=function(){
+	this.data.push([random(5,370),random(300,400),1,0,0,0]);
+	this.data.push([random(5,370),random(100,200),1,0,0,0]);
+	this.data.push([random(5,370),random(100,300),1,0,0,0]);
+	this.data.push([random(5,370),random(0,50),1,0,0,0]);
+	this.data.push([random(5,370),random(0,-50),1,0,0,0]);
+	this.data.push([random(5,370),random(-40,-200),1,0,0,0]);
+	this.data.push([random(5,370),random(0,300),1,0,0,0]);
+};
+
+//add a new platform
+Level.prototype.addBar=function(){
+	var type;
+	var x_veloc;
+	var y_veloc;
+	if(round(random(1,12))){
+			type=1;
+			x_veloc=0;
+			y_veloc=0;
+	}
+
+	var x=random(5,370);
+	var y=random(-10,-50)-this.offset;
+	//finally add the bar
+	this.data.push([x,y,type,0,x_veloc,y_veloc]);
+	if(type===1){
+
+	}
+};
+
+//return the current offset
+Level.prototype.getOffset=function(){
+	return this.offset;
+};
+
+//add value to the offset
+Level.prototype.addOffset=function(value){
+	this.offset+=value;
+	if(value>0){
+		gameScore+=value;
+	}
+};
+
+Level.prototype.move=function(){
+	//iterate through all bars 
+	for(var i=0;i<this.data.length;i++){
+		//move x and y by their respective velocities
+		this.data[i][0]+=this.data[i][4];
+		this.data[i][1]+=this.data[i][5];
+		
+		//if it get below the screen, delete it
+		if(this.data[i][2]===4){
+		   if(this.data[i][1]>540-this.offset){
+				this.data.splice(i,1);
+			} 
+		}else{
+			if(this.data[i][1]>400-this.offset){
+				this.data.splice(i,1);
+			}
+		}
+		
+	} 
+	
+};
+
+Level.prototype.display=function(){
+	for(var i=0;i<this.data.length;i++){
+		//create easier to read variables
+		var x = this.data[i][0];
+		var y = this.data[i][1];
+		var type = this.data[i][2];
+		var useNum = this.data[i][3];
+				fill(51, 242, 3);
+				rect(x,y,this.barwidth,8,5);
+				fill(189, 230, 187);
+				noStroke();
+				rect(x+3,y+4,4,3,3);
+				rect(x+this.barwidth-5,y+3,4,3,3);
+				stroke(0, 0, 0);
+	}
+};
+
+Level.prototype.run=function(){
+	this.display();
+	this.move();
+};
+ 
+//make new level
+var gameLevel= new Level();
+//set that level up
+gameLevel.setup();
+//create a player inside that level
+var player= new Bitmoji(gameLevel);
+
+var drawSplash = function(){
+    currentScene=0;
+    background(110, 214, 240);
+    fill(0, 0, 0);
+    textFont(createFont("impact"));
+    textSize(61);
+    text("Jumper", 109,29);
+    textFont(createFont("normal"));
+    textSize(20);
+    text("By:Kevin & Isaac", 10,361);
+    startButton.draw();
+    drawMe (216, 122, 65);
+    drawBitmoji (45,108,71);
+}; //scene for splash screen
+
+var playerSelect = function(){
+    currentScene=1;
+    background(255, 0, 0);
+    fill(0, 0, 0);
+    textSize(25);
+    text("Select Your Character",82,38);
+    selectChar1.draw();
+    selectChar2.draw();
+    drawMe(184,101,100);
+    drawBitmoji(7,94,100);
+    
+}; //scene for player select
+
+var drawGame = function(playerModel){
+    currentScene=2;
+    
+    if(desicion===1){
+        playerModel=drawBitmoji;
+    }
+    
+    else if(desicion===2){
+        playerModel=drawMe;
+    }
+    
+    background(255, 255, 255);
+    
+    //run the level stuffs, graphics offset by player height
+    pushMatrix();
+    translate(0,gameLevel.getOffset());
+    gameLevel.run();
+    player.run();
+    popMatrix();
+    
+    //restart level
+    if(keyDown[ENTER]){
+        gameLevel=new Level();
+        gameLevel.setup();
+        player=new Bitmoji(gameLevel);
+        gameScore=0;
+    }
+    
+};
+ 
+mouseClicked = function(){
+    if(currentScene===0){
+        startButton.handleMouseClick();
+    }
+    
+    else if(currentScene===1){
+        selectChar1.handleMouseClick();
+        selectChar2.handleMouseClick();
+    }
+}; 
+
+var draw= function() {
+    background(255, 255, 255);
+        if (currentScene===0){
+        drawSplash();
+        
+    }
+    
+    else if(currentScene===1){
+        playerSelect();
+        
+    }
+    
+    else if(currentScene===2){
+        drawGame();
+    }
+};
+
+var keyPressed=function(){
+    keyDown[keyCode]=true;
+};
+var keyReleased=function(){
+    keyDown[keyCode]=false;
+};
