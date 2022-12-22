@@ -127,6 +127,7 @@ var drawMe = function(x,y,h){
     triangle(x+87*p, y+109*p, x+100*p, y+101*p, x+105*p, y+112*p); // nose
 };
 
+//Project Constants
 var currentScene = 0;
 var desicion=0;
 var terminal_velocity=4;
@@ -147,7 +148,7 @@ for (var i = 0; i < numStars; i++) {
 //main character
 var Bitmoji = function(environment){
     this.x=200;
-    this.y=200;
+    this.y=302;
     this.width=30; // you can change this
     this.height=40; // and/or this
     this.x_veloc=0;
@@ -199,40 +200,39 @@ var startButton = new drawButton ({
         
     }
     }); //button for character select
-    
-var selectChar1 = new drawButton ({
-    x: 33,
-    y: 118,
-    width: 150,
-    height: 150,
-    label: " ",
+
+//Create the button on the rules scene    
+var rulesDone = new drawButton ({
+    x: 85,
+    y: 340,
+    width: 215,
+    height: 50,
+    label: "   Start your Hoping ",
     color: color(65, 235, 201),
     onClick: function (){
         currentScene=2;
-        desicion=1;
+        desicion=round(random(1,2));
         
     }
     }); //chose Kevin Bitmoji
-    
-var selectChar2 = new drawButton ({
-    x: 217,
-    y: 118,
-    width: 150,
-    height: 150,
-    label: " ",
-    color: color(65, 235, 201),
-    onClick: function (){
-        currentScene=2;
-        desicion=2;
-    }
-    }); //chose Isaac Bitmoji
 
 //draw stuff
-Bitmoji.prototype.display=function(playerModel){
-    drawBitmoji(this.x-20,this.y-25,this.height);
-	
+Bitmoji.prototype.display=function(){
+    fill(53, 242, 56);
+    ellipse(0,568,1219,541);
+    image(getImage("cute/TreeTall"),-61,195);
+    image(getImage("cute/Rock"),60,256,109,100);
+    image(getImage("cute/Rock"),282,303,99,100);
+    image(getImage("cute/TreeTall"),15,228);
+    image(getImage("space/collisioncircle"),171,319,100,33);
+    if(desicion===2){
+    drawBitmoji(this.x-20,this.y-25,this.height);}
+    if(desicion===1){
+    drawMe(this.x-20,this.y-25,this.height);
+    }
 };
 
+//make the character move
 Bitmoji.prototype.move=function(){
 	this.x+=this.x_veloc;
 	this.y-=this.y_veloc;
@@ -243,8 +243,12 @@ Bitmoji.prototype.move=function(){
 	if(this.x<-30){
 		this.x=400;
 	}
+	    fill(255, 0, 0);
+	    textSize(30);
+	    text("Press ENTER to restart", 45, this.y-500);
 };
 
+//make the character interact with platforms
 Bitmoji.prototype.collide=function(){
 	//check for platforms
 	for(var i=0;i<this.env.data.length;i++){
@@ -280,6 +284,7 @@ Bitmoji.prototype.collide=function(){
 	}
 };
 
+//make the character move with arrow keys
 Bitmoji.prototype.control=function(){
 	if(keyDown[RIGHT]){
 		if(this.x_veloc<5){
@@ -294,7 +299,7 @@ Bitmoji.prototype.control=function(){
 	
 };
 
-//brain function(like draw() kind of)
+//combine all previous character prototype into one function
 Bitmoji.prototype.run=function(){
 	this.collide();
 	this.move();
@@ -302,15 +307,16 @@ Bitmoji.prototype.run=function(){
 	this.display();
 };
 
+//create elemnets of the level
 var Level = function(){
     this.data=[[]]; //holds platform data
-    this.barwidth=40;
+    this.barwidth=35;
     this.offset=0;
 };
     
 //set up some bars for the beginning
 Level.prototype.setup=function(){
-	this.data.push([random(5,370),random(300,400),1,0,0,0]);
+	this.data.push([200,327,1,0,0,0]);
 	this.data.push([random(5,370),random(100,200),1,0,0,0]);
 	this.data.push([random(5,370),random(100,300),1,0,0,0]);
 	this.data.push([random(5,370),random(0,50),1,0,0,0]);
@@ -352,6 +358,7 @@ Level.prototype.addOffset=function(value){
 	}
 };
 
+//move the platforms away when off screen
 Level.prototype.move=function(){
 	//iterate through all bars 
 	for(var i=0;i<this.data.length;i++){
@@ -374,6 +381,7 @@ Level.prototype.move=function(){
 	
 };
 
+//how the platforms look
 Level.prototype.display=function(){
 	for(var i=0;i<this.data.length;i++){
 		//create easier to read variables
@@ -381,9 +389,9 @@ Level.prototype.display=function(){
 		var y = this.data[i][1];
 		var type = this.data[i][2];
 		var useNum = this.data[i][3];
-				fill(51, 242, 3);
+				fill(255, 77, 0);
 				rect(x,y,this.barwidth,8,5);
-				fill(189, 230, 187);
+				fill(255, 255, 0);
 				noStroke();
 				rect(x+3,y+4,4,3,3);
 				rect(x+this.barwidth-5,y+3,4,3,3);
@@ -391,6 +399,7 @@ Level.prototype.display=function(){
 	}
 };
 
+//placing the platforms
 Level.prototype.run=function(){
 	this.display();
 	this.move();
@@ -398,11 +407,14 @@ Level.prototype.run=function(){
  
 //make new level
 var gameLevel= new Level();
+
 //set that level up
 gameLevel.setup();
+
 //create a player inside that level
 var player= new Bitmoji(gameLevel);
 
+//draw dynamic background
 var drawBackgroundStars = function() {
     background(38, 2, 122); //stars
     noStroke();
@@ -419,51 +431,60 @@ var drawBackgroundStars = function() {
     }
 };
 
-var drawSplash = function(){
-    currentScene=0;
-    background(110, 214, 240);
-    fill(0, 0, 0);
-    textFont(createFont("impact"));
-    textSize(61);
-    text("Jumper", 109,29);
-    textFont(createFont("normal"));
-    textSize(20);
-    text("By:Kevin & Isaac", 10,361);
-    startButton.draw();
-    drawMe (216, 122, 65);
-    drawBitmoji (45,108,71);
-}; //scene for splash screen
-
-var playerSelect = function(){
-    currentScene=1;
-    background(255, 0, 0);
-    fill(0, 0, 0);
-    textSize(25);
-    text("Select Your Character",82,38);
-    selectChar1.draw();
-    selectChar2.draw();
-    drawMe(184,101,100);
-    drawBitmoji(7,94,100);
-    
-}; //scene for player select
-
+//make the arrow keys register
 var keyPressed=function(){
     keyDown[keyCode]=true;
 };
 var keyReleased=function(){
     keyDown[keyCode]=false;
 };
-var drawGame = function(playerModel){
+
+//draw the first scene
+var drawSplash = function(){
+    currentScene=0;
+    background(110, 214, 240);
+        fill(53, 242, 56);
+    ellipse(0,568,1219,541);
+    image(getImage("cute/TreeTall"),-61,195);
+    image(getImage("cute/Rock"),60,256,109,100);
+    image(getImage("cute/Rock"),282,303,99,100);
+    image(getImage("cute/TreeTall"),15,228);
+    image(getImage("space/collisioncircle"),171,319,100,33);
+    fill(0, 0, 0);
+    textFont(createFont("impact"));
+    textSize(61);
+    image(getImage("space/star"),50,19,116,116);
+    image(getImage("space/star"),250,19,116,116);
+    image(getImage("space/star"),149,38,116,116);
+    image(getImage("space/octopus"),285,220,116,116);
+    image(getImage("space/rocketship"),19,220,116,116);
+    text("Jumper", 109,29);
+    textFont(createFont("normal"));
+    textSize(20);
+    text("By:Kevin & Isaac", 10,361);
+    startButton.draw();
+    drawMe (216, 122, 65);
+    drawBitmoji (33,108,71);
+}; //scene for splash screen
+
+//draw the second scene
+var rulesPage = function(){
+    currentScene=1;
+    background(115, 217, 240);
+    fill(0, 0, 0);
+    textSize(22);
+    text("Rules:",28,17);
+    text("this game is an infinite scroller based off the game 'Doodle jump' where you jump and land on platforms to reach extraordinary hights, you control your character with the left and right arrow keys. You can also pass the left or right side to warp to the other side. Have Fun !!",19,49,367,279);
+    rulesDone.draw();
+    rotate(0);
+    drawMe(304,291,45);
+    drawBitmoji(0,285,45);
+    
+}; //scene for the rules
+
+//draw the thrid scene / game
+var drawGame = function(){
     currentScene=2;
-    
-    if(desicion===1){
-        playerModel=drawBitmoji;
-    }
-    
-    else if(desicion===2){
-        playerModel=drawMe;
-    }
-    
     drawBackgroundStars();
     
     //run the level stuffs, graphics offset by player height
@@ -480,20 +501,20 @@ var drawGame = function(playerModel){
         player=new Bitmoji(gameLevel);
         gameScore=0;
     }
-    
 };
  
+//allow the mouse to click the buttons
 mouseClicked = function(){
     if(currentScene===0){
         startButton.handleMouseClick();
     }
     
     else if(currentScene===1){
-        selectChar1.handleMouseClick();
-        selectChar2.handleMouseClick();
+        rulesDone.handleMouseClick();
     }
 }; 
 
+//display the projects
 var draw= function() {
     background(255, 255, 255);
         if (currentScene===0){
@@ -502,7 +523,7 @@ var draw= function() {
     }
     
     else if(currentScene===1){
-        playerSelect();
+        rulesPage();
         
     }
     
